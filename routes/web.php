@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\back\authcontroller;
+
+use App\Http\Controllers\authcontroller;
 use App\Http\Controllers\back\dashboardC;
+use App\Http\Controllers\SesiC;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -21,29 +24,26 @@ Route::get('/', function () {
 });
 
 Route::middleware(['guest'])->group(function(){
-Route::get('/login', [authcontroller::class, 'index'])->name('login');
-Route::post('/login', [authcontroller::class, 'login'])->name('login.go');
+Route::get('/login', [SesiC::class, 'index']);
+Route::post('/login', [SesiC::class, 'login']);
 });
 
-Route::middleware(['auth'])->group(function(){
-    Route::get('/pembayaranSpp/admin', [dashboardC::class, 'admin'])->name('admin.index')->middleware('userakses:admin');
-    Route::get('/pembayaranSpp/petugas', [dashboardC::class, 'petugas'])->name('petugas.index')->middleware('userakses:petugas');
-    Route::get('/pembayaranSpp/user', [dashboardC::class, 'user'])->name('user.index')->middleware('userakses:user');
-    Route::get('/logout', [authcontroller::class, 'logout'])->name('logout');
+    Route::get('/admin', [dashboardC::class, 'index'])->name('admin.index');
+    Route::get('/petugas', [dashboardC::class, 'petugas'])->name('petugas.index');
+    Route::get('/user', [dashboardC::class, 'user'])->name('user.index');
+    Route::get('/logout', [SesiC::class, 'logout'])->name('logout');
 
-});
-
-Route::get('/pembayaranSpp', function () {
-    $user = auth()->user();
-    if ($user->level == 'admin') {
-        return Redirect::route('admin.index');
-    } elseif ($user->level == 'petugas') {
-        return Redirect::route('petugas.index');
-    } elseif ($user->level == 'user') {
-        return Redirect::route('user.index');
-    } else {
+    Route::get('/dashboard/pembayaranSpp', function () {
+        if (Auth::check()) {
+            if (Auth::user()->level == 'admin') {
+                return Redirect::route('admin.index');
+            } elseif (Auth::user()->level == 'petugas') {
+                return Redirect::route('petugas.index');
+            } elseif (Auth::user()->level == 'user') {
+                return Redirect::route('user.index');
+            }
+        }
         return Redirect::route('login');
-    }
-})->name('redirect.dashboard');
+    })->name('redirect.dashboard');
 
 

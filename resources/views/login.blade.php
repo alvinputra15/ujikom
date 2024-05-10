@@ -75,8 +75,6 @@
               </ul>
             </div>
             @endif
-            <form action="{{ route('login.go') }}" method="POST" enctype="multipart/form-data">
-                @csrf
             <div class="text-center mb-7">
               <h3 class="text-body-highlight">Sign In</h3>
               <p class="text-body-tertiary">Get access to your account</p>
@@ -85,6 +83,8 @@
               <hr class="bg-body-secondary mt-5 mb-4" />
               <div class="divider-content-center">or use email</div>
             </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+              @csrf
             <div class="mb-3 text-start"><label class="form-label" for="email">Email address</label>
               <div class="form-icon-container"><input class="form-control form-icon-input" id="email" type="email" name="email" placeholder="name@example.com" /><span class="fas fa-user text-body fs-9 form-icon"></span></div>
             </div>

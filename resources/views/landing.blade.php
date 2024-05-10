@@ -81,7 +81,7 @@
             <!--menu-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item border-bottom border-translucent border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs-9 fw-bold py-3" aria-current="page" href="#">Home</a></li>
-              <li class="nav-item border-bottom border-translucent border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs-9 fw-bold py-3" href="{{ url('login') }}">Login</a></li>
+              <li class="nav-item border-bottom border-translucent border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs-9 fw-bold py-3" href="{{ route('login') }}">Login</a></li>
               <li class="nav-item border-bottom border-translucent border-bottom-lg-0"><a class="nav-link lh-1 py-0 fs-9 fw-bold py-3" href="#blog">Blog</a></li>
               <li class="nav-item"><a class="nav-link lh-1 py-0 fs-9 fw-bold py-3" href="#team">Team</a></li>
             </ul>

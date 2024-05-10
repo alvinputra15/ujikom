@@ -1,5 +1,5 @@
-@extends('ujikom')
-@section('content')
+@extends('layout.ujikom')
+@section('layout.content')
 <div class="content">
     <div class="pb-5">
       <div class="row g-4">
